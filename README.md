@@ -8,9 +8,7 @@ A modern, fully responsive personal portfolio website built with **React**, **Vi
 
 ## 🔗 Live Demo
 
-```
-https://beautiful-fairy-fd01f8.netlify.app/
-```
+[https://beautiful-fairy-fd01f8.netlify.app/](https://beautiful-fairy-fd01f8.netlify.app/)
 
 ---
 
