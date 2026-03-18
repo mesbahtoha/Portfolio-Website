@@ -8,10 +8,8 @@ A modern, fully responsive personal portfolio website built with **React**, **Vi
 
 ## 🔗 Live Demo
 
-> Add your live URL here after deployment
-
 ```
-https://your-portfolio.vercel.app
+https://beautiful-fairy-fd01f8.netlify.app/
 ```
 
 ---
