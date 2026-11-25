@@ -126,7 +126,7 @@ export default function About() {
                   className="card cursor-default p-5"
                 >
                   <p className="glow-gold mb-1 font-syne text-2xl font-extrabold text-accent-gold">
-                    {item.value}
+                    {pick(item, 'value', lang)}
                   </p>
                   <p className="text-xs font-epilogue leading-snug text-text-muted">
                     {pick(item, 'label', lang)}

@@ -71,7 +71,7 @@ function VideoCard({ video, index, onOpen }) {
         </div>
 
         <div className="absolute right-3 top-3 rounded-full border border-white/10 bg-black/50 px-2.5 py-1 text-[10px] font-epilogue text-white/80 backdrop-blur-sm">
-          {video.tag}
+          {pick(video, 'tag', lang)}
         </div>
 
         <span className="absolute inset-0 m-auto flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-black/45 text-white backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:border-accent-gold/50 group-hover:bg-accent-gold group-hover:text-bg-primary">

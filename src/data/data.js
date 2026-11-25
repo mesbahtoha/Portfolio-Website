@@ -70,7 +70,7 @@ export const about = {
   highlights: [
     { value: '12+', label: 'Projects Built', labelBn: 'প্রজেক্ট' },
     { value: '30+', label: 'Technologies', labelBn: 'টেকনোলজি' },
-    { value: 'Finalist', label: 'AI Builders Congress', labelBn: 'এআই বিল্ডার্স কংগ্রেস' },
+    { value: 'Finalist', valueBn: 'ফাইনালিস্ট', label: 'AI Builders Congress', labelBn: 'এআই বিল্ডার্স কংগ্রেস' },
     { value: 'B.Sc. ICE', label: 'Daffodil International University', labelBn: 'ড্যাফোডিল ইন্টারন্যাশনাল ইউনিভার্সিটি' },
   ],
   passions: [
@@ -1008,6 +1008,7 @@ export const videos = [
     thumbnail: 'https://i.ytimg.com/vi/9Wda4f2YxpA/maxresdefault.jpg',
     url: 'https://youtu.be/9Wda4f2YxpA',
     tag: 'AI · RAG',
+    tagBn: 'এআই · RAG',
   },
   {
     id: 'ai-presentation',
@@ -1021,6 +1022,7 @@ export const videos = [
       'এআই প্রজেক্টের সমস্যা, প্রোডাক্ট চিন্তা, আর্কিটেকচার ও প্রভাব নিয়ে একটি প্রেজেন্টেশন।',
     url: 'https://drive.google.com/file/d/1K8QtexMqD7h4WjTvSJfEj14W2OojyJOU/view?usp=sharing',
     tag: 'Presentation',
+    tagBn: 'প্রেজেন্টেশন',
     accent: 'from-violet-500/30 to-indigo-500/10',
   },
   {
@@ -1035,6 +1037,7 @@ export const videos = [
       'GearUp রেন্টাল প্ল্যাটফর্মের সম্পূর্ণ ওয়াকথ্রু: অথেন্টিকেশন, রোল ড্যাশবোর্ড, Stripe চেকআউট ও রেন্টাল লাইফসাইকেল।',
     url: 'https://drive.google.com/file/d/1kyZACJthg4hZlQ-kyNz9QBrRNdszE22r/view?usp=sharing',
     tag: 'Full Stack',
+    tagBn: 'ফুল স্ট্যাক',
     accent: 'from-emerald-500/30 to-teal-500/10',
   },
   {
@@ -1049,6 +1052,7 @@ export const videos = [
       'রাইড-পুলিং ডেমো — অটো-ম্যাচিং, ভাড়া ভাগ, পাঁচ-ধাপের লাইফসাইকেল, ওয়ালেট পেমেন্ট ও কনকারেন্সি সেফটি।',
     url: 'https://drive.google.com/file/d/1Sv4TWxU_ah8V4aotkXp7nMesXi4S5sOR/view?usp=sharing',
     tag: 'Backend · PostgreSQL',
+    tagBn: 'ব্যাকএন্ড · PostgreSQL',
     accent: 'from-sky-500/30 to-cyan-500/10',
   },
 ]
