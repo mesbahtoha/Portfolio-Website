@@ -21,9 +21,9 @@ export const personal = {
   titleLine: 'Full Stack Developer | AI & RAG Applications',
   titleLineBn: 'ফুল স্ট্যাক ডেভেলপার | এআই ও RAG অ্যাপ্লিকেশন',
   tagline:
-    'I build production web apps and Bengali-first AI products — from textbook-grounded RAG tutors to marketplaces and logistics platforms.',
+    'Full Stack Developer building scalable web apps with modern technologies and AI-powered solutions.',
   taglineBn:
-    'আমি প্রোডাকশন ওয়েব অ্যাপ এবং বাংলা-ফার্স্ট এআই প্রোডাক্ট বানাই — টেক্সটবুক-গ্রাউন্ডেড RAG টিউটর থেকে মার্কেটপ্লেস ও লজিস্টিকস প্ল্যাটফর্ম পর্যন্ত।',
+    'ফুল স্ট্যাক ডেভেলপার — আধুনিক টেকনোলজি ও এআই-চালিত সমাধান দিয়ে স্কেলযোগ্য ওয়েব অ্যাপ বানাই।',
   email: 'mesbahulalam017@gmail.com',
   phone: '+8801601860526',
   phoneDisplay: '+880 1601-860526',
@@ -47,9 +47,12 @@ export const personal = {
     'Express.js',
     'MongoDB',
     'PostgreSQL',
+    'MySQL',
     'Prisma',
     'AI / RAG',
+    'Python',
     'Tailwind CSS',
+    'Docker',
   ],
 }
 
