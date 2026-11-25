@@ -23,6 +23,11 @@ export const translations = {
     },
     hero: {
       available: 'Available for opportunities',
+      eyebrow: 'Full Stack Developer · AI & RAG',
+      viewProjects: 'View Projects',
+      proofClients: 'Contract clients',
+      proofDistricts: 'Districts covered',
+      proofFinalist: 'AI finalist',
       greeting: "Hi, I'm",
       titles: [
         'Full Stack Developer',
@@ -141,6 +146,9 @@ export const translations = {
       methods: 'Methods & Pipeline',
       results: 'Headline Results',
       findings: 'Key Findings',
+      heldOut: 'Held-out results',
+      resultHint: 'Lower error is better. These are held-out research results, not clinical or industry tolerances.',
+      technicalDetails: 'Full technical metrics',
       repo: 'View Research Repository',
       note: 'Research note',
       noteText:
@@ -221,6 +229,11 @@ export const translations = {
     },
     hero: {
       available: 'নতুন সুযোগের জন্য প্রস্তুত',
+      eyebrow: 'ফুল স্ট্যাক ডেভেলপার · এআই ও RAG',
+      viewProjects: 'প্রজেক্ট দেখুন',
+      proofClients: 'কন্ট্রাক্ট ক্লায়েন্ট',
+      proofDistricts: 'জেলা কভার',
+      proofFinalist: 'এআই ফাইনালিস্ট',
       greeting: 'হ্যালো, আমি',
       titles: [
         'ফুল স্ট্যাক ডেভেলপার',
@@ -339,6 +352,9 @@ export const translations = {
       methods: 'মেথড ও পাইপলাইন',
       results: 'মূল ফলাফল',
       findings: 'মূল পর্যবেক্ষণ',
+      heldOut: 'হেল্ড-আউট ফলাফল',
+      resultHint: 'কম ত্রুটি মানে ভালো ফলাফল। এগুলো হেল্ড-আউট গবেষণার ফলাফল — ক্লিনিক্যাল বা ইন্ডাস্ট্রি টলারেন্স নয়।',
+      technicalDetails: 'সম্পূর্ণ টেকনিক্যাল মেট্রিক',
       repo: 'গবেষণা রিপোজিটরি দেখুন',
       note: 'গবেষণা নোট',
       noteText:

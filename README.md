@@ -14,11 +14,12 @@ A production-ready personal portfolio built with **React 18**, **Vite 5**, **Tai
 - **Dark / light mode** — token-driven themes, persisted to `localStorage`, system preference fallback, no flash on load.
 - **English / বাংলা** — every section, navigation item, project description, research note, form label, and footer string is translatable.
 - **Contract experience** — Shahi Mokam, Fahim Pharmaceutical, and Bytespace with roles, durations, links, and delivery notes.
-- **Research section** — DorjiBari / BodyM smartphone-based body measurement with real experiment metrics and an honest limitations note.
+- **Research section** — DorjiBari / BodyM smartphone-based body measurement with plain-language headline metrics, collapsible technical details, and an honest limitations note.
 - **Video showcase** — YouTube and Google Drive embeds in an accessible modal player.
 - **Project system** — featured + all projects, detail modals, feature lists, challenges, roadmap, live/API/repo links.
 - **Responsive** — verified at 320, 360, 390, 414, 768, 1024, 1280, 1366, 1440, and 1920 px with no horizontal overflow.
 - **Performance** — compressed project thumbnails, lazy-loaded images, font preconnect, single-page static build.
+- **Motion & polish** — smooth anchor scrolling, staggered reveals, hover shadows, soft card elevation, and reduced-motion fallbacks.
 - **SEO** — Open Graph, Twitter cards, canonical URL, JSON-LD Person schema, sitemap, robots.txt, web manifest.
 - **Accessibility** — skip link, keyboard-operable project cards, focus-visible rings, modal focus/escape handling, reduced-motion support.
 
@@ -34,7 +35,7 @@ A production-ready personal portfolio built with **React 18**, **Vite 5**, **Tai
 | Icons | React Icons 5 |
 | Contact form | EmailJS 4 |
 | Routing | React Router DOM 6 |
-| Fonts | Syne, Epilogue, Hind Siliguri (Bangla) |
+| Fonts | Manrope (headings), Inter (body), JetBrains Mono (metrics), Hind Siliguri (Bangla) |
 
 ---
 

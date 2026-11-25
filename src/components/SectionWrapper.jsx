@@ -38,7 +38,7 @@ export function SectionHeading({ label, title, subtitle, className = 'mb-14' }) 
           variants={lineReveal}
           className="w-5 h-[2px] bg-accent-gold rounded-full"
         />
-        <span className="text-accent-gold font-epilogue text-sm font-500 tracking-widest uppercase">
+        <span className="text-accent-gold font-mono text-[11px] font-medium tracking-[0.18em] uppercase">
           {label}
         </span>
       </motion.div>
@@ -54,7 +54,8 @@ export function SectionHeading({ label, title, subtitle, className = 'mb-14' }) 
               transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.05 },
             },
           }}
-          className="font-syne font-800 text-4xl md:text-5xl text-text-primary tracking-tight leading-tight"
+          className="font-syne text-4xl font-extrabold leading-[1.08] text-text-primary md:text-5xl"
+          style={{ letterSpacing: '-0.035em' }}
         >
           {title}
         </motion.h2>

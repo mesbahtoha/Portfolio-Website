@@ -8,9 +8,13 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        syne: ['Syne', 'Hind Siliguri', 'sans-serif'],
-        epilogue: ['Epilogue', 'Hind Siliguri', 'sans-serif'],
-        bangla: ['Hind Siliguri', 'Epilogue', 'sans-serif'],
+        sans: ['Inter', 'Hind Siliguri', 'system-ui', 'sans-serif'],
+        display: ['Manrope', 'Hind Siliguri', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Hind Siliguri', 'monospace'],
+        // Legacy class aliases kept so existing components pick up the new system.
+        syne: ['Manrope', 'Hind Siliguri', 'system-ui', 'sans-serif'],
+        epilogue: ['Inter', 'Hind Siliguri', 'system-ui', 'sans-serif'],
+        bangla: ['Hind Siliguri', 'Inter', 'sans-serif'],
       },
       colors: {
         bg: {
@@ -33,7 +37,11 @@ export default {
       },
       boxShadow: {
         soft: '0 20px 60px -30px rgb(0 0 0 / 0.45)',
+        lift: '0 26px 70px -32px rgb(0 0 0 / 0.55)',
         glow: '0 0 40px rgb(var(--accent-gold) / 0.18)',
+      },
+      transitionTimingFunction: {
+        smooth: 'cubic-bezier(0.22, 1, 0.36, 1)',
       },
       animation: {
         float: 'float 6s ease-in-out infinite',

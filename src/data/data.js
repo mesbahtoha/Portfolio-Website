@@ -21,9 +21,9 @@ export const personal = {
   titleLine: 'Full Stack Developer | AI & RAG Applications',
   titleLineBn: 'ফুল স্ট্যাক ডেভেলপার | এআই ও RAG অ্যাপ্লিকেশন',
   tagline:
-    'I build real-world products end to end — a Bengali-first AI tutor grounded in real textbook pages, marketplaces, logistics platforms, and AI-powered web apps.',
+    'I build production web apps and Bengali-first AI products — from textbook-grounded RAG tutors to marketplaces and logistics platforms.',
   taglineBn:
-    'আমি শুরু থেকে শেষ পর্যন্ত বাস্তব-জীবনের প্রোডাক্ট বানাই — বাস্তব টেক্সটবুক পৃষ্ঠা থেকে উত্তর দেওয়া বাংলা-ফার্স্ট এআই টিউটর, মার্কেটপ্লেস, লজিস্টিকস প্ল্যাটফর্ম এবং এআই-চালিত ওয়েব অ্যাপ।',
+    'আমি প্রোডাকশন ওয়েব অ্যাপ এবং বাংলা-ফার্স্ট এআই প্রোডাক্ট বানাই — টেক্সটবুক-গ্রাউন্ডেড RAG টিউটর থেকে মার্কেটপ্লেস ও লজিস্টিকস প্ল্যাটফর্ম পর্যন্ত।',
   email: 'mesbahulalam017@gmail.com',
   phone: '+8801601860526',
   phoneDisplay: '+880 1601-860526',
@@ -68,10 +68,34 @@ export const about = {
   hobbiesBn:
     'কোডের বাইরে ক্রিকেট দেখা, লজিক পাজল সমাধান এবং LLM, RAG ও ভেক্টর সার্চ কীভাবে সফটওয়্যার বদলে দিচ্ছে তা নিয়ে ঘুরে বেড়াতে ভালো লাগে — ভালো ডেভেলপাররা কীবোর্ডের বাইরেও কৌতূহলী থাকেন।',
   highlights: [
-    { value: '12+', label: 'Projects Built', labelBn: 'প্রজেক্ট' },
-    { value: '30+', label: 'Technologies', labelBn: 'টেকনোলজি' },
-    { value: 'Finalist', valueBn: 'ফাইনালিস্ট', label: 'AI Builders Congress', labelBn: 'এআই বিল্ডার্স কংগ্রেস' },
-    { value: 'B.Sc. ICE', label: 'Daffodil International University', labelBn: 'ড্যাফোডিল ইন্টারন্যাশনাল ইউনিভার্সিটি' },
+    {
+      value: '3',
+      label: 'Contract clients',
+      labelBn: 'কন্ট্রাক্ট ক্লায়েন্ট',
+      detail: 'Shahi Mokam · Fahim · Bytespace',
+      detailBn: 'শাহী মোকাম · ফাহিম · বাইটস্পেস',
+    },
+    {
+      value: '9',
+      label: 'Selected projects',
+      labelBn: 'নির্বাচিত প্রজেক্ট',
+      detail: 'Live demos & source code',
+      detailBn: 'লাইভ ডেমো ও সোর্স কোড',
+    },
+    {
+      value: '64',
+      label: 'Districts covered',
+      labelBn: 'জেলা কভার',
+      detail: 'ZapShift parcel network',
+      detailBn: 'ZapShift পার্সেল নেটওয়ার্ক',
+    },
+    {
+      value: '1',
+      label: 'AI Builders Congress finalist',
+      labelBn: 'এআই বিল্ডার্স কংগ্রেস ফাইনালিস্ট',
+      detail: 'Shikhi Bondhu · Team Lead',
+      detailBn: 'শিখি বন্ধু · টিম লিড',
+    },
   ],
   passions: [
     'Full Stack Development',
@@ -113,7 +137,7 @@ export const about = {
       detailBn: 'ড্যাফোডিল ইন্টারন্যাশনাল ইউনিভার্সিটি',
     },
     {
-      year: '2025',
+      year: '2025–2026',
       label: 'Contract Work',
       labelBn: 'চুক্তিভিত্তিক কাজ',
       detail: 'Shahi Mokam, Fahim Pharmaceutical & Bytespace',
@@ -944,6 +968,36 @@ export const research = {
     { name: 'Ridge / Random Forest / MLP', nameBn: 'Ridge / Random Forest / MLP' },
     { name: 'Subject-grouped nested CV', nameBn: 'Subject-grouped nested CV' },
     { name: 'Uncertainty calibration & selective verification', nameBn: 'Uncertainty calibration ও selective verification' },
+  ],
+  headline: [
+    {
+      value: '~3 cm',
+      label: 'Average measurement error',
+      labelBn: 'গড় পরিমাপ ত্রুটি',
+      context: 'Chest, waist & hip on held-out data',
+      contextBn: 'হেল্ড-আউট ডেটায় বুক, কোমর ও হিপ',
+    },
+    {
+      value: '5',
+      label: 'Body measurements',
+      labelBn: 'শরীরের মাপ',
+      context: 'Chest, waist, hip, shoulder, arm',
+      contextBn: 'বুক, কোমর, হিপ, কাঁধ, হাত',
+    },
+    {
+      value: '8,975',
+      label: 'Dual-view photo pairs',
+      labelBn: 'ডুয়াল-ভিউ ফটো পেয়ার',
+      context: '17,950 preprocessed silhouettes',
+      contextBn: '১৭,৯৫০ প্রি-প্রসেসড সিলুয়েট',
+    },
+    {
+      value: '2.5×',
+      label: 'Better uncertainty detection',
+      labelBn: 'আনসার্টেইনটি শনাক্তকরণে উন্নত',
+      context: 'Flags risky hip measurements vs random',
+      contextBn: 'ঝুঁকিপূর্ণ হিপ মাপ র‍্যান্ডমের চেয়ে ভালো শনাক্ত করে',
+    },
   ],
   results: [
     {

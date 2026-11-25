@@ -131,30 +131,56 @@ export default function Research() {
                   {t('research.results')}
                 </h3>
                 <span className="rounded-full border border-accent-gold/20 bg-accent-gold/10 px-2.5 py-0.5 text-[10px] font-epilogue text-accent-gold">
-                  BodyM
+                  {t('research.heldOut')}
                 </span>
               </div>
 
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                {research.results.map((result) => (
+                {research.headline.map((result) => (
                   <motion.div
                     key={result.value}
                     variants={scaleUp}
                     whileHover={{ scale: 1.02, borderColor: 'rgb(var(--accent-gold) / 0.3)' }}
                     className="rounded-2xl border border-bg-border bg-bg-secondary/70 p-4"
                   >
-                    <p className="whitespace-nowrap font-syne text-base font-extrabold tracking-tight text-accent-gold">
-                      {result.value}
-                    </p>
-                    <p className="mt-1 font-epilogue text-[11px] font-medium leading-snug text-text-primary">
+                    <p className="metric-value text-xl">{result.value}</p>
+                    <p className="mt-1 font-epilogue text-[11px] font-semibold leading-snug text-text-primary">
                       {pick(result, 'label', lang)}
                     </p>
-                    <p className="mt-0.5 font-epilogue text-[10px] leading-snug text-text-muted">
-                      {pick(result, 'detail', lang)}
+                    <p className="mt-1 font-epilogue text-[10px] leading-snug text-text-muted">
+                      {pick(result, 'context', lang)}
                     </p>
                   </motion.div>
                 ))}
               </div>
+
+              <p className="mt-3 font-epilogue text-[10px] leading-relaxed text-text-muted">
+                {t('research.resultHint')}
+              </p>
+
+              <details className="group mt-3 rounded-xl border border-bg-border bg-bg-secondary/40 px-3.5 py-2.5">
+                <summary className="cursor-pointer list-none font-epilogue text-[11px] font-medium text-text-secondary transition-colors hover:text-accent-gold">
+                  <span className="inline-flex items-center gap-1.5">
+                    {t('research.technicalDetails')}
+                    <span className="transition-transform group-open:rotate-180">⌄</span>
+                  </span>
+                </summary>
+                <ul className="mt-3 space-y-2">
+                  {research.results.map((result) => (
+                    <li
+                      key={result.value}
+                      className="flex flex-col gap-0.5 border-t border-bg-border/60 pt-2 first:border-0 first:pt-0"
+                    >
+                      <span className="font-mono text-[11px] font-medium text-text-primary">
+                        {result.value}
+                      </span>
+                      <span className="font-epilogue text-[10px] leading-relaxed text-text-muted">
+                        {pick(result, 'label', lang)} — {pick(result, 'detail', lang)}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </details>
             </motion.div>
 
             <motion.div variants={fadeUp} className="card p-6 md:p-7">

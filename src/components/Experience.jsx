@@ -65,6 +65,9 @@ export default function Experience() {
 
         <div className="mb-5 flex items-center gap-3">
           <span className="eyebrow">{t('experience.workLabel')}</span>
+          <span className="rounded-full border border-bg-border bg-bg-card px-2.5 py-0.5 font-mono text-[10px] text-text-muted">
+            2025–2026
+          </span>
           <span className="h-px flex-1 bg-bg-border" />
         </div>
 
