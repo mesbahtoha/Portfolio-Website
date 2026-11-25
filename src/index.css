@@ -20,8 +20,8 @@ html.dark {
   --accent-blue: 74 158 255;
 
   --text-primary: 240 238 232;
-  --text-secondary: 160 158 174;
-  --text-muted: 108 106 130;
+  --text-secondary: 168 166 184;
+  --text-muted: 150 148 174;
 
   --nav-bg: 8 8 16;
   --card-shadow: 0 24px 70px -36px rgb(0 0 0 / 0.8);
@@ -42,8 +42,8 @@ html.light {
   --accent-blue: 37 99 235;
 
   --text-primary: 22 22 33;
-  --text-secondary: 72 72 88;
-  --text-muted: 116 116 136;
+  --text-secondary: 68 68 86;
+  --text-muted: 100 100 122;
 
   --nav-bg: 247 247 251;
   --card-shadow: 0 22px 55px -32px rgb(33 33 52 / 0.28);
