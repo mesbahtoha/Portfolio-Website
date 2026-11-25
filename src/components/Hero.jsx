@@ -189,21 +189,21 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="flex justify-center lg:justify-end"
           >
-            <div className="relative">
+            <div className="relative w-full max-w-[370px]">
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
                 className="relative"
               >
-                <div className="gradient-border rounded-full p-[3px]">
-                  <div className="relative h-64 w-64 overflow-hidden rounded-full bg-bg-card sm:h-80 sm:w-80">
+                <div className="rounded-[2rem] border border-bg-border bg-bg-card p-2 shadow-lift">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-[1.55rem] bg-bg-secondary">
                     <div className="absolute inset-0 z-0 bg-gradient-to-br from-bg-secondary to-bg-card" />
                     <img
                       src={portrait}
                       alt={`${personal.name} — Profile`}
                       width="1000"
                       height="934"
-                      className="relative z-10 h-full w-full rounded-full object-cover object-top"
+                      className="relative z-10 h-full w-full object-cover object-top transition-transform duration-700 ease-smooth hover:scale-[1.02]"
                     />
                   </div>
                 </div>
