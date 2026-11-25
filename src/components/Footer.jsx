@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion'
-import { FiGithub, FiLinkedin, FiArrowUp } from 'react-icons/fi'
+import { FiArrowUp, FiGithub, FiLinkedin } from 'react-icons/fi'
 import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 import { personal } from '../data/data'
-import shortImg from '../assets/shortImg.jpeg'
+import { useLanguage } from '../context/LanguageContext'
 import { useReveal, staggerContainer, fadeUp, scaleUp } from '../hooks/useScrollAnimations'
+import shortImg from '../assets/shortImg.jpeg'
 
 const socialLinks = [
   { icon: FiGithub, href: personal.github, label: 'GitHub' },
@@ -13,14 +14,17 @@ const socialLinks = [
 ]
 
 const footerLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Education', href: '#education' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Contact', href: '#contact' },
+  { key: 'about', href: '#about' },
+  { key: 'experience', href: '#experience' },
+  { key: 'education', href: '#education' },
+  { key: 'projects', href: '#projects' },
+  { key: 'research', href: '#research' },
+  { key: 'videos', href: '#videos' },
+  { key: 'contact', href: '#contact' },
 ]
 
 export default function Footer() {
+  const { t } = useLanguage()
   const { ref, inView } = useReveal({ margin: '-20px' })
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -28,63 +32,64 @@ export default function Footer() {
   return (
     <motion.footer
       ref={ref}
-      variants={staggerContainer(0.08)}
+      variants={staggerContainer(0.06)}
       initial="hidden"
       animate={inView ? 'visible' : 'hidden'}
-      className="bg-bg-secondary/50 border-t border-bg-border/50"
+      className="border-t border-bg-border/60 bg-bg-secondary/50"
     >
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        {/* Top row */}
+      <div className="mx-auto max-w-6xl px-6 py-12">
         <motion.div
           variants={fadeUp}
-          className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-10"
+          className="mb-10 flex flex-col items-start justify-between gap-8 md:flex-row md:items-center"
         >
-          <div className="flex flex-col gap-2">
+          <div className="flex max-w-sm flex-col gap-2">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-accent-gold p-[2px] overflow-hidden">
-                <div className="w-full h-full rounded-[6px] overflow-hidden bg-bg-card">
-                  <img
-                    src={shortImg}
-                    alt="Profile"
-                    className="w-full h-full object-cover"
-                  />
+              <div className="h-8 w-8 overflow-hidden rounded-lg bg-accent-gold p-[2px]">
+                <div className="h-full w-full overflow-hidden rounded-[6px] bg-bg-card">
+                  <img src={shortImg} alt="" width="32" height="32" className="h-full w-full object-cover" />
                 </div>
               </div>
-
-              <span className="font-syne font-700 text-text-primary">
+              <span className="font-syne font-bold text-text-primary">
                 {personal.shortName}
                 <span className="text-accent-gold">.</span>
               </span>
             </div>
-
-            <p className="text-text-muted text-xs font-epilogue max-w-xs leading-relaxed">
-              MERN Stack Developer based in {personal.location}. Open to opportunities.
+            <p className="font-epilogue text-xs leading-relaxed text-text-muted">
+              {t('footer.tagline')}
             </p>
+            <a
+              href={personal.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-1 inline-flex w-fit items-center gap-1.5 text-[11px] font-epilogue text-accent-gold transition-opacity hover:opacity-80"
+            >
+              {t('footer.resume')} ↗
+            </a>
           </div>
 
           <motion.nav
-            variants={staggerContainer(0.06)}
-            className="flex flex-wrap gap-x-6 gap-y-2"
+            variants={staggerContainer(0.04)}
+            aria-label="Footer navigation"
+            className="flex flex-wrap gap-x-5 gap-y-2"
           >
             {footerLinks.map((link) => (
               <motion.a
                 key={link.href}
                 href={link.href}
                 variants={fadeUp}
-                whileHover={{ color: '#f0a500', y: -2 }}
-                onClick={(e) => {
-                  e.preventDefault()
+                whileHover={{ color: 'rgb(var(--accent-gold))', y: -2 }}
+                onClick={(event) => {
+                  event.preventDefault()
                   document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' })
                 }}
-                className="text-text-muted text-sm font-epilogue transition-colors"
+                className="font-epilogue text-sm text-text-muted transition-colors"
               >
-                {link.label}
+                {t(`nav.${link.key}`)}
               </motion.a>
             ))}
           </motion.nav>
         </motion.div>
 
-        {/* Divider */}
         <motion.div
           variants={{
             hidden: { scaleX: 0, opacity: 0 },
@@ -95,18 +100,14 @@ export default function Footer() {
             },
           }}
           style={{ transformOrigin: '0%' }}
-          className="h-px bg-gradient-to-r from-transparent via-bg-border to-transparent mb-8"
+          className="mb-8 h-px bg-gradient-to-r from-transparent via-bg-border to-transparent"
         />
 
-        {/* Bottom row */}
         <motion.div
           variants={fadeUp}
-          className="flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="flex flex-col items-center justify-between gap-4 sm:flex-row"
         >
-          <motion.div
-            variants={staggerContainer(0.07)}
-            className="flex items-center gap-3 flex-wrap"
-          >
+          <motion.div variants={staggerContainer(0.05)} className="flex flex-wrap items-center gap-2.5">
             {socialLinks.map(({ icon: Icon, href, label }) => (
               <motion.a
                 key={label}
@@ -115,26 +116,26 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label={label}
                 variants={scaleUp}
-                whileHover={{ scale: 1.15, borderColor: 'rgba(240,165,0,0.4)' }}
-                className="w-9 h-9 rounded-full border border-bg-border flex items-center justify-center
-                           text-text-muted hover:text-accent-gold transition-colors"
+                whileHover={{ scale: 1.1, borderColor: 'rgb(var(--accent-gold) / 0.4)' }}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-bg-border text-text-muted transition-colors hover:text-accent-gold"
               >
                 <Icon size={14} />
               </motion.a>
             ))}
           </motion.div>
 
-          <p className="text-text-muted text-xs font-epilogue text-center">
-            © {new Date().getFullYear()} {personal.name}. Built with React & Tailwind.
+          <p className="text-center font-epilogue text-xs text-text-muted">
+            © {new Date().getFullYear()} {personal.name}. {t('footer.rights')}{' '}
+            <span className="hidden sm:inline">{t('footer.builtWith')}</span>
           </p>
 
           <motion.button
+            type="button"
             onClick={scrollToTop}
-            whileHover={{ scale: 1.1, y: -3, borderColor: 'rgba(240,165,0,0.4)' }}
+            whileHover={{ scale: 1.08, y: -2, borderColor: 'rgb(var(--accent-gold) / 0.4)' }}
             whileTap={{ scale: 0.95 }}
-            className="w-9 h-9 rounded-full border border-bg-border flex items-center justify-center
-                       text-text-muted hover:text-accent-gold transition-colors"
-            aria-label="Back to top"
+            aria-label={t('footer.backToTop')}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-bg-border text-text-muted transition-colors hover:text-accent-gold"
           >
             <FiArrowUp size={14} />
           </motion.button>

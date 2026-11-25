@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://beautiful-fairy-fd01f8.netlify.app/sitemap.xml

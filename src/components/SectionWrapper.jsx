@@ -28,9 +28,9 @@ export default function SectionWrapper({ children, className = '', id }) {
 
 // ── SECTION HEADING ──────────────────────────────────────────
 // Animated label + decorative line + title + optional subtitle.
-export function SectionHeading({ label, title, subtitle }) {
+export function SectionHeading({ label, title, subtitle, className = 'mb-14' }) {
   return (
-    <motion.div variants={fadeUp} className="mb-14">
+    <motion.div variants={fadeUp} className={className}>
 
       {/* Label row */}
       <motion.div className="inline-flex items-center gap-2 mb-4" variants={labelReveal}>

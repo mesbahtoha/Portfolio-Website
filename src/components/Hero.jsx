@@ -1,32 +1,45 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { FiDownload, FiMail, FiGithub, FiLinkedin } from 'react-icons/fi'
+import {
+  FiAward,
+  FiDownload,
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+  FiMapPin,
+} from 'react-icons/fi'
 import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 import { personal } from '../data/data'
-import profileImg from '../assets/profile.jpeg'
+import { pick } from '../i18n/content'
+import { useLanguage } from '../context/LanguageContext'
+import portrait from '../assets/formal-portrait.jpg'
 
-// Typewriter hook
-function useTypewriter(words, speed = 80, pause = 2000) {
+function useTypewriter(words, speed = 80, pause = 1900) {
   const [text, setText] = useState('')
   const [wordIndex, setWordIndex] = useState(0)
   const [isDeleting, setIsDeleting] = useState(false)
 
   useEffect(() => {
+    setText('')
+    setWordIndex(0)
+    setIsDeleting(false)
+  }, [words])
+
+  useEffect(() => {
     const current = words[wordIndex % words.length]
+    if (!current) return undefined
 
     const timeout = setTimeout(() => {
       if (!isDeleting) {
         setText(current.slice(0, text.length + 1))
-
         if (text.length === current.length) {
           setTimeout(() => setIsDeleting(true), pause)
         }
       } else {
         setText(current.slice(0, text.length - 1))
-
         if (text.length === 0) {
           setIsDeleting(false)
-          setWordIndex((i) => i + 1)
+          setWordIndex((index) => index + 1)
         }
       }
     }, isDeleting ? speed / 2 : speed)
@@ -45,119 +58,115 @@ const socialLinks = [
 ]
 
 export default function Hero() {
-  const titles = [
-    'MERN Stack Developer',
-    'Full Stack Developer',
-    'React.js Developer',
-    'Node.js Developer',
-  ]
-
+  const { lang, t, messages } = useLanguage()
+  const titles = messages.hero.titles
   const typeText = useTypewriter(titles)
+  const location = pick(personal, 'location', lang)
+  const tagline = pick(personal, 'tagline', lang)
 
   const containerVariants = {
     hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.2,
-      },
-    },
+    visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
+    hidden: { opacity: 0, y: 26 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
   }
 
   const firstName = personal.shortName
   const lastName = personal.name.split(' ').slice(-1)[0]
 
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center pt-[72px] overflow-hidden"
-    >
-      {/* Background */}
+    <section id="hero" className="relative flex min-h-screen items-center overflow-hidden pt-[72px]">
       <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-100" />
       <div className="absolute inset-0 bg-hero-gradient" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-gold/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent-blue/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="pointer-events-none absolute left-[12%] top-1/4 h-80 w-80 rounded-full bg-accent-gold/5 blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-1/4 right-[10%] h-72 w-72 rounded-full bg-accent-blue/5 blur-[110px]" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Text Content */}
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-6 py-20 md:py-24">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="flex flex-col gap-6"
+            className="flex flex-col gap-5"
           >
-            {/* Status badge */}
-            <motion.div variants={itemVariants}>
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-bg-card border border-bg-border rounded-full text-xs font-epilogue text-text-secondary">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                Available for opportunities
+            <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-2.5">
+              <div className="inline-flex items-center gap-2 rounded-full border border-bg-border bg-bg-card/80 px-4 py-2 text-xs font-epilogue text-text-secondary">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+                {t('hero.available')}
+              </div>
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-accent-gold/20 bg-accent-gold/10 px-3 py-2 text-[11px] font-epilogue font-semibold text-accent-gold">
+                <FiAward size={12} />
+                {t('hero.finalist')}
               </div>
             </motion.div>
 
-            {/* Name */}
             <motion.h1
               variants={itemVariants}
-              className="font-syne font-800 text-5xl sm:text-6xl xl:text-7xl text-text-primary leading-[1.05] tracking-tight"
+              className="font-syne text-[2.5rem] font-extrabold leading-[1.05] tracking-tight text-text-primary min-[380px]:text-[2.7rem] sm:text-6xl xl:text-[4.6rem]"
             >
-              Hi, I&apos;m{' '}
-              <span className="text-accent-gold glow-gold">{firstName}</span>
-              <br />
-              {lastName}
+              {t('hero.greeting')}{' '}
+              <span className="glow-gold text-accent-gold">{firstName}</span> {lastName}
               <span className="text-accent-gold">.</span>
             </motion.h1>
 
-            {/* Typewriter */}
-            <motion.div variants={itemVariants} className="flex items-center gap-3">
-              <div className="w-8 h-[2px] bg-accent-gold rounded-full" />
-              <p className="font-syne font-600 text-lg text-text-secondary">
+            <motion.div variants={itemVariants} className="flex min-h-[32px] items-center gap-3">
+              <div className="h-[2px] w-8 rounded-full bg-accent-gold" />
+              <p className="font-syne text-base font-semibold text-text-secondary sm:text-lg">
                 {typeText}
-                <span className="cursor-blink text-accent-gold ml-0.5">|</span>
+                <span className="cursor-blink ml-0.5 text-accent-gold">|</span>
               </p>
             </motion.div>
 
-            {/* Bio */}
             <motion.p
               variants={itemVariants}
-              className="text-text-secondary font-epilogue text-base leading-relaxed max-w-lg"
+              className="max-w-xl font-epilogue text-sm leading-relaxed text-text-secondary sm:text-base"
             >
-              {personal.tagline}
+              {tagline}
             </motion.p>
 
-            {/* Buttons */}
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-3 pt-2">
-              <a href={personal.resumeUrl} className="btn-primary">
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-2">
+              {personal.coreStack.map((tech, index) => (
+                <motion.span
+                  key={tech}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 + index * 0.05 }}
+                  whileHover={{ scale: 1.05, borderColor: 'rgb(var(--accent-gold) / 0.5)' }}
+                  className="tag cursor-default px-3 py-1 text-[11px]"
+                >
+                  {tech}
+                </motion.span>
+              ))}
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-3 pt-1.5">
+              <a
+                href={personal.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
                 <FiDownload size={15} />
-                Download Resume
+                {t('hero.download')}
               </a>
 
               <a
                 href="#contact"
-                onClick={(e) => {
-                  e.preventDefault()
+                onClick={(event) => {
+                  event.preventDefault()
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
                 }}
                 className="btn-secondary"
               >
                 <FiMail size={15} />
-                Hire Me
+                {t('hero.hire')}
               </a>
             </motion.div>
 
-            {/* Social + Location */}
-            <motion.div variants={itemVariants} className="flex items-center gap-4 pt-2 flex-wrap">
+            <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-3 pt-1">
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
@@ -165,87 +174,87 @@ export default function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-10 h-10 rounded-full border border-bg-border flex items-center justify-center text-text-secondary hover:text-accent-gold hover:border-accent-gold/50 transition-all duration-200 hover:scale-110"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-bg-border text-text-secondary transition-all duration-200 hover:scale-110 hover:border-accent-gold/50 hover:text-accent-gold"
                 >
-                  <Icon size={16} />
+                  <Icon size={15} />
                 </a>
               ))}
 
-              <div className="w-px h-6 bg-bg-border mx-1" />
-              <span className="text-xs font-epilogue text-text-muted">
-                📍 {personal.location}
+              <div className="mx-1 h-6 w-px bg-bg-border" />
+              <span className="inline-flex items-center gap-1.5 text-xs font-epilogue text-text-muted">
+                <FiMapPin size={12} className="text-accent-gold" />
+                {location}
               </span>
             </motion.div>
           </motion.div>
 
-          {/* Avatar */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, scale: 0.94, x: 24 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="flex justify-center lg:justify-end"
           >
-            <div className="relative">
-              <motion.div
-                animate={{ y: [0, -16, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                className="relative"
-              >
-                {/* Gradient ring */}
-                <div className="gradient-border p-[3px] rounded-full">
-                  <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden bg-bg-card">
-                    <div className="absolute inset-0 bg-gradient-to-br from-bg-secondary to-bg-card z-0" />
-                    <img
-                      src={profileImg}
-                      alt="Profile pic"
-                      className="relative z-10 w-full h-full object-cover rounded-full"
-                    />
+            <div className="relative w-full max-w-[380px]">
+              <div className="gradient-border p-[3px] shadow-glow">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[2.25rem] bg-bg-card">
+                  <img
+                    src={portrait}
+                    alt={`${personal.name} — Full Stack Developer`}
+                    width="1000"
+                    height="934"
+                    className="h-full w-full object-cover object-top"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#05050b]/95 via-[#05050b]/45 to-transparent p-5 pt-16">
+                    <p className="font-syne text-sm font-bold text-white">
+                      {personal.name}
+                    </p>
+                    <p className="mt-0.5 text-[11px] font-epilogue text-white/70">
+                      {t('about.photoCaption')}
+                    </p>
                   </div>
                 </div>
+              </div>
 
-                {/* Floating chips */}
-                <motion.div
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                  className="absolute -top-4 -right-4 bg-bg-card border border-bg-border rounded-2xl px-4 py-3 shadow-xl z-20"
-                >
-                  <p className="text-accent-gold font-syne font-700 text-base leading-none">
-                    MERN
-                  </p>
-                  <p className="text-text-muted text-xs mt-1">Stack</p>
-                </motion.div>
-
-                <motion.div
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                  className="absolute -bottom-4 -left-4 bg-bg-card border border-bg-border rounded-2xl px-4 py-3 shadow-xl z-20"
-                >
-                  <p className="text-accent-gold font-syne font-700 text-base leading-none">
-                    2025
-                  </p>
-                  <p className="text-text-muted text-xs mt-1">Certified</p>
-                </motion.div>
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+                className="absolute -right-3 top-8 z-20 rounded-2xl border border-bg-border bg-bg-card/95 px-3.5 py-2.5 shadow-xl backdrop-blur-sm sm:-right-5"
+              >
+                <p className="font-syne text-sm font-bold leading-none text-accent-gold">
+                  {t('hero.aiBadge')}
+                </p>
+                <p className="mt-1 text-[10px] text-text-muted">RAG · LLM</p>
               </motion.div>
 
-              <div className="absolute inset-0 -z-10 bg-accent-gold/10 blur-3xl rounded-full scale-75" />
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.9 }}
+                className="absolute -left-3 bottom-24 z-20 rounded-2xl border border-bg-border bg-bg-card/95 px-3.5 py-2.5 shadow-xl backdrop-blur-sm sm:-left-5"
+              >
+                <p className="font-syne text-sm font-bold leading-none text-text-primary">
+                  Full Stack
+                </p>
+                <p className="mt-1 text-[10px] text-text-muted">React · Next.js</p>
+              </motion.div>
+
+              <div className="absolute -inset-6 -z-10 scale-90 rounded-[3rem] bg-accent-gold/10 blur-3xl" />
             </div>
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.4 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          transition={{ delay: 1.3 }}
+          className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex"
         >
-          <span className="text-text-muted text-xs font-epilogue tracking-widest uppercase">
-            Scroll
+          <span className="font-epilogue text-[10px] uppercase tracking-[0.2em] text-text-muted">
+            {t('hero.scroll')}
           </span>
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-[1px] h-8 bg-gradient-to-b from-accent-gold/60 to-transparent"
+            className="h-8 w-px bg-gradient-to-b from-accent-gold/70 to-transparent"
           />
         </motion.div>
       </div>

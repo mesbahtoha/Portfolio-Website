@@ -1,0 +1,21 @@
+{
+  "name": "Md. Mesbahul Alam — Full Stack Developer",
+  "short_name": "Mesbahul Alam",
+  "description": "Full Stack Developer building Bengali-first AI/RAG products, marketplaces and scalable web applications.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080810",
+  "theme_color": "#080810",
+  "icons": [
+    {
+      "src": "/images.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

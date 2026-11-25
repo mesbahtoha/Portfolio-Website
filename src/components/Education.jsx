@@ -1,85 +1,90 @@
 import { motion } from 'framer-motion'
 import SectionWrapper, { SectionHeading } from './SectionWrapper'
-import { education } from '../data/data'
+import { education, personal } from '../data/data'
+import { pick } from '../i18n/content'
+import { useLanguage } from '../context/LanguageContext'
 import { scaleUp, staggerContainer, slideLeft, useReveal } from '../hooks/useScrollAnimations'
-import { FiAward, FiCalendar, FiMapPin, FiStar } from 'react-icons/fi'
+import {
+  FiArrowUpRight,
+  FiAward,
+  FiCalendar,
+  FiMapPin,
+  FiStar,
+} from 'react-icons/fi'
 
 function EducationCard({ edu, index }) {
   const { ref, inView } = useReveal({ margin: '-50px' })
+  const { lang, t } = useLanguage()
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 32, scale: 0.97 }}
+      initial={{ opacity: 0, y: 30, scale: 0.98 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: index * 0.12 }}
-      whileHover={{ y: -4, borderColor: 'rgba(240,165,0,0.25)', transition: { duration: 0.25 } }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
+      whileHover={{
+        y: -4,
+        borderColor: 'rgb(var(--accent-gold) / 0.25)',
+        transition: { duration: 0.25 },
+      }}
       className="card group relative overflow-hidden"
     >
-      {/* Corner accent */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={inView ? { opacity: 1, scale: 1 } : {}}
-        transition={{ delay: index * 0.12 + 0.3 }}
-        className="absolute top-0 right-0 w-16 h-16 bg-accent-gold/5 rounded-bl-3xl"
-      />
+      <div className="absolute right-0 top-0 h-16 w-16 rounded-bl-3xl bg-accent-gold/5" />
 
-      <div className="flex flex-col sm:flex-row sm:items-start gap-4">
-        {/* Icon */}
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
         <motion.div
           initial={{ scale: 0, rotate: -20 }}
           animate={inView ? { scale: 1, rotate: 0 } : {}}
-          transition={{ type: 'spring', stiffness: 260, damping: 18, delay: index * 0.12 + 0.15 }}
-          className="w-12 h-12 rounded-2xl bg-accent-gold/10 border border-accent-gold/20
-                     flex items-center justify-center shrink-0"
+          transition={{ type: 'spring', stiffness: 260, damping: 18, delay: index * 0.1 + 0.12 }}
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-accent-gold/20 bg-accent-gold/10"
         >
           <FiAward className="text-accent-gold" size={20} />
         </motion.div>
 
         <div className="flex-1">
-          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+          <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <h3 className="font-syne font-700 text-text-primary text-lg">{edu.degree}</h3>
-              <p className="text-accent-gold font-epilogue text-sm font-500 mt-0.5">
-                {edu.institution}
+              <h3 className="font-syne text-lg font-bold text-text-primary">
+                {pick(edu, 'degree', lang)}
+              </h3>
+              <p className="mt-0.5 font-epilogue text-sm font-medium text-accent-gold">
+                {pick(edu, 'institution', lang)}
               </p>
             </div>
-            <div className="flex flex-col items-start sm:items-end gap-1.5 shrink-0">
-              <div className="flex items-center gap-1 text-text-muted text-xs font-epilogue">
-                <FiCalendar size={11} /> {edu.period}
+            <div className="flex shrink-0 flex-col items-start gap-1.5 sm:items-end">
+              <div className="flex items-center gap-1 font-epilogue text-xs text-text-muted">
+                <FiCalendar size={11} /> {pick(edu, 'period', lang)}
               </div>
-              <div className="flex items-center gap-1 text-text-muted text-xs font-epilogue">
-                <FiMapPin size={11} /> {edu.location}
+              <div className="flex items-center gap-1 font-epilogue text-xs text-text-muted">
+                <FiMapPin size={11} /> {pick(edu, 'location', lang)}
               </div>
               {edu.gpa && (
-                <div className="flex items-center gap-1 px-2.5 py-0.5 bg-accent-gold/10
-                                text-accent-gold text-xs rounded-full border border-accent-gold/20">
+                <div className="flex items-center gap-1 rounded-full border border-accent-gold/20 bg-accent-gold/10 px-2.5 py-0.5 text-xs text-accent-gold">
                   <FiStar size={10} />
-                  GPA {edu.gpa}
+                  {t('education.gpa')} {edu.gpa}
                 </div>
               )}
             </div>
           </div>
 
-          <p className="text-text-secondary text-sm font-epilogue leading-relaxed mb-4">
-            {edu.description}
+          <p className="mb-4 font-epilogue text-sm leading-relaxed text-text-secondary">
+            {pick(edu, 'description', lang)}
           </p>
 
-          {/* Highlights */}
           <motion.div
-            variants={staggerContainer(0.07)}
+            variants={staggerContainer(0.06)}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
-            className="flex flex-wrap gap-3"
+            className="flex flex-wrap gap-x-4 gap-y-2"
           >
-            {edu.highlights.map((h, i) => (
+            {pick(edu, 'highlights', lang).map((highlight) => (
               <motion.span
-                key={i}
+                key={highlight}
                 variants={scaleUp}
-                className="flex items-center gap-1.5 text-xs text-text-secondary font-epilogue"
+                className="flex items-center gap-1.5 font-epilogue text-xs text-text-secondary"
               >
                 <span className="text-accent-gold">✦</span>
-                {h}
+                {highlight}
               </motion.span>
             ))}
           </motion.div>
@@ -90,19 +95,40 @@ function EducationCard({ edu, index }) {
 }
 
 export default function Education() {
+  const { t } = useLanguage()
+
   return (
-    <SectionWrapper id="education" className="py-24">
-      <div className="max-w-6xl mx-auto px-6">
+    <SectionWrapper id="education" className="section-pad">
+      <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
-          label="Education"
-          title={<>Academic <span className="text-accent-gold">Background</span></>}
-          subtitle="Building a strong engineering foundation alongside hands-on development skills."
+          label={t('education.label')}
+          title={
+            <>
+              {t('education.titleStart')}{' '}
+              <span className="text-accent-gold">{t('education.titleAccent')}</span>
+            </>
+          }
+          subtitle={t('education.subtitle')}
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {education.map((edu, i) => (
-            <EducationCard key={edu.institution} edu={edu} index={i} />
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {education.map((edu, index) => (
+            <EducationCard key={edu.id} edu={edu} index={index} />
           ))}
         </div>
+
+        <motion.a
+          href={personal.certificatesUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          variants={slideLeft}
+          whileHover={{ x: 4 }}
+          className="mt-6 inline-flex items-center gap-2 rounded-xl border border-bg-border bg-bg-card/70 px-4 py-3 text-xs font-epilogue text-text-secondary transition-colors hover:border-accent-gold/40 hover:text-accent-gold"
+        >
+          <FiAward size={14} className="text-accent-gold" />
+          {t('education.certificates')}
+          <FiArrowUpRight size={13} />
+        </motion.a>
       </div>
     </SectionWrapper>
   )

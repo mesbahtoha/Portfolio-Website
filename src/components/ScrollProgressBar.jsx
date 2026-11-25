@@ -15,7 +15,8 @@ export default function ScrollProgressBar() {
         left: 0,
         right: 0,
         height: '2px',
-        background: 'linear-gradient(to right, #f0a500, #ffb830, #4a9eff)',
+        background:
+          'linear-gradient(to right, rgb(var(--accent-gold)), rgb(var(--accent-amber)), rgb(var(--accent-blue)))',
         zIndex: 9999,
       }}
     />

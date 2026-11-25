@@ -1,16 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>" />
+    <link rel="icon" type="image/png" href="/images.png" />
+    <link rel="apple-touch-icon" href="/images.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Md. Mesbahul Alam – MERN Stack Developer | React, Node.js, MongoDB | Dhaka, Bangladesh" />
-    <title>Mesbahul Alam · MERN Stack Developer</title>
+    <meta name="theme-color" content="#080810" />
+
+    <title>Md. Mesbahul Alam · Full Stack Developer & AI Engineer</title>
+    <meta
+      name="description"
+      content="Md. Mesbahul Alam — Full Stack Developer from Dhaka, Bangladesh. I build Bengali-first AI/RAG tutors, marketplaces, logistics platforms, and production web apps with React, Next.js, TypeScript, Node.js, PostgreSQL, and MongoDB."
+    />
+    <meta
+      name="keywords"
+      content="Md. Mesbahul Alam, Full Stack Developer, AI Engineer, RAG, Next.js, React, TypeScript, Node.js, MongoDB, PostgreSQL, Dhaka, Bangladesh, portfolio"
+    />
+    <meta name="author" content="Md. Mesbahul Alam" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://beautiful-fairy-fd01f8.netlify.app/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Md. Mesbahul Alam" />
+    <meta property="og:title" content="Md. Mesbahul Alam · Full Stack Developer & AI Engineer" />
+    <meta
+      property="og:description"
+      content="Full Stack Developer building Bengali-first AI/RAG products, marketplaces, and scalable web applications."
+    />
+    <meta property="og:url" content="https://beautiful-fairy-fd01f8.netlify.app/" />
+    <meta property="og:image" content="https://beautiful-fairy-fd01f8.netlify.app/og-image.jpg" />
+    <meta property="og:image:alt" content="Md. Mesbahul Alam — Full Stack Developer" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="bn_BD" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Md. Mesbahul Alam · Full Stack Developer & AI Engineer" />
+    <meta
+      name="twitter:description"
+      content="Full Stack Developer building Bengali-first AI/RAG products, marketplaces, and scalable web applications."
+    />
+    <meta name="twitter:image" content="https://beautiful-fairy-fd01f8.netlify.app/og-image.jpg" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Prevent theme / language flash before React hydrates -->
+    <script>
+      (function () {
+        try {
+          var theme = localStorage.getItem('portfolio-theme');
+          if (theme !== 'light' && theme !== 'dark') {
+            theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          }
+          var lang = localStorage.getItem('portfolio-lang') === 'bn' ? 'bn' : 'en';
+          var root = document.documentElement;
+          root.classList.remove('light', 'dark');
+          root.classList.add(theme);
+          root.lang = lang;
+          root.style.colorScheme = theme;
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', theme === 'light' ? '#f7f7fb' : '#080810');
+        } catch (error) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Md. Mesbahul Alam",
+        "jobTitle": "Full Stack Developer",
+        "description": "Full Stack Developer building Bengali-first AI/RAG applications, marketplaces, and scalable web platforms.",
+        "url": "https://beautiful-fairy-fd01f8.netlify.app/",
+        "image": "https://beautiful-fairy-fd01f8.netlify.app/og-image.jpg",
+        "email": "mailto:mesbahulalam017@gmail.com",
+        "telephone": "+8801601860526",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Dhaka",
+          "addressCountry": "BD"
+        },
+        "sameAs": [
+          "https://github.com/mesbahtoha",
+          "https://www.linkedin.com/in/mesbahul-alam/"
+        ],
+        "knowsAbout": [
+          "Full Stack Development",
+          "React.js",
+          "Next.js",
+          "TypeScript",
+          "Node.js",
+          "PostgreSQL",
+          "MongoDB",
+          "Retrieval-Augmented Generation",
+          "Machine Learning"
+        ]
+      }
+    </script>
   </head>
   <body>
+    <a class="skip-link" href="#hero">Skip to content</a>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

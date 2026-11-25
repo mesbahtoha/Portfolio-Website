@@ -2,6 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ────────────────────────────────────────────────────────────
+   DESIGN TOKENS — dark is the default, light is fully supported
+   ──────────────────────────────────────────────────────────── */
+:root,
+html.dark {
+  color-scheme: dark;
+
+  --bg-primary: 8 8 16;
+  --bg-secondary: 14 14 26;
+  --bg-card: 18 18 31;
+  --bg-border: 34 34 52;
+
+  --accent-gold: 240 165 0;
+  --accent-amber: 255 184 48;
+  --accent-coral: 255 107 107;
+  --accent-blue: 74 158 255;
+
+  --text-primary: 240 238 232;
+  --text-secondary: 160 158 174;
+  --text-muted: 108 106 130;
+
+  --nav-bg: 8 8 16;
+  --card-shadow: 0 24px 70px -36px rgb(0 0 0 / 0.8);
+  --grid-line: 240 165 0;
+}
+
+html.light {
+  color-scheme: light;
+
+  --bg-primary: 247 247 251;
+  --bg-secondary: 255 255 255;
+  --bg-card: 255 255 255;
+  --bg-border: 226 226 238;
+
+  --accent-gold: 180 83 9;
+  --accent-amber: 194 105 10;
+  --accent-coral: 214 48 48;
+  --accent-blue: 37 99 235;
+
+  --text-primary: 22 22 33;
+  --text-secondary: 72 72 88;
+  --text-muted: 116 116 136;
+
+  --nav-bg: 247 247 251;
+  --card-shadow: 0 22px 55px -32px rgb(33 33 52 / 0.28);
+  --grid-line: 180 83 9;
+}
+
 @layer base {
   * {
     margin: 0;
@@ -11,39 +59,68 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-padding-top: 92px;
+    background-color: rgb(var(--bg-primary));
   }
 
   body {
-    background-color: #080810;
-    color: #f0eee8;
-    font-family: 'Epilogue', sans-serif;
+    @apply bg-bg-primary text-text-primary font-epilogue;
     font-weight: 400;
     line-height: 1.7;
     overflow-x: hidden;
+    min-height: 100vh;
+    transition: background-color 0.35s ease, color 0.35s ease;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  html[lang='bn'] body,
+  html[lang='bn'] .font-syne,
+  html[lang='bn'] .font-epilogue {
+    font-family: 'Hind Siliguri', 'Epilogue', sans-serif;
+    letter-spacing: 0;
+  }
+
+  html[lang='bn'] .font-syne {
+    font-weight: 700;
   }
 
   ::-webkit-scrollbar {
-    width: 4px;
+    width: 6px;
+    height: 6px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #080810;
+    background: rgb(var(--bg-primary));
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #f0a500;
-    border-radius: 2px;
+    background: rgb(var(--accent-gold) / 0.8);
+    border-radius: 999px;
   }
 
   ::selection {
-    background: rgba(240, 165, 0, 0.3);
-    color: #f0eee8;
+    background: rgb(var(--accent-gold) / 0.28);
+    color: rgb(var(--text-primary));
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent-gold));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
 @layer components {
-
   .section-heading {
     @apply font-syne font-extrabold text-4xl md:text-5xl text-text-primary tracking-tight;
   }
@@ -54,27 +131,51 @@
 
   .tag {
     @apply inline-flex items-center px-3 py-1 text-xs font-epilogue font-medium
-           bg-bg-border text-text-secondary rounded-full border border-bg-border
-           hover:border-accent-gold hover:text-accent-gold transition-colors duration-200;
+           bg-bg-secondary text-text-secondary rounded-full border border-bg-border
+           hover:border-accent-gold/50 hover:text-accent-gold transition-colors duration-200;
   }
 
   .card {
     @apply bg-bg-card border border-bg-border rounded-2xl p-6
            hover:border-accent-gold/30 transition-all duration-300;
+    box-shadow: var(--card-shadow);
+  }
+
+  .card-quiet {
+    @apply bg-bg-card/70 border border-bg-border rounded-2xl;
+    backdrop-filter: blur(16px);
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-6 py-3 bg-accent-gold text-bg-primary
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent-gold text-bg-primary
            font-syne font-bold text-sm rounded-full
            hover:bg-accent-amber transition-all duration-200
-           hover:scale-105 active:scale-95 shadow-lg shadow-accent-gold/20;
+           hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-accent-gold/20;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center gap-2 px-6 py-3 border border-accent-gold/50 
-           text-accent-gold font-syne font-bold text-sm rounded-full
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 border border-accent-gold/50
+           text-accent-gold font-syne font-bold text-sm rounded-full bg-transparent
            hover:bg-accent-gold/10 hover:border-accent-gold transition-all duration-200
-           hover:scale-105 active:scale-95;
+           hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full
+           border border-bg-border bg-bg-card/60 text-text-secondary text-sm font-epilogue
+           hover:text-accent-gold hover:border-accent-gold/40 transition-all duration-200;
+  }
+
+  .icon-button {
+    @apply inline-flex items-center justify-center w-10 h-10 rounded-full border border-bg-border
+           bg-bg-card/60 text-text-secondary hover:text-accent-gold hover:border-accent-gold/40
+           transition-all duration-200;
+  }
+
+  .nav-shell {
+    background: rgb(var(--nav-bg) / 0.82);
+    border-bottom: 1px solid rgb(var(--bg-border) / 0.65);
+    backdrop-filter: blur(20px) saturate(140%);
   }
 
   .noise-overlay {
@@ -89,22 +190,46 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size: 200px;
   }
+
+  html.light .noise-overlay {
+    opacity: 0.01;
+  }
+
+  .section-pad {
+    @apply py-20 md:py-24;
+  }
+
+  .section-soft {
+    @apply bg-bg-secondary/50;
+  }
+
+  .eyebrow {
+    @apply text-accent-gold font-epilogue text-xs md:text-sm font-semibold tracking-[0.18em] uppercase;
+  }
+
+  .metric-value {
+    @apply font-syne font-extrabold text-2xl md:text-3xl text-accent-gold tracking-tight;
+  }
+
+  .prose-muted {
+    @apply text-text-secondary font-epilogue text-sm md:text-base leading-relaxed;
+  }
 }
 
-/* Glow effect for gold elements */
+/* Gold glow for small accents */
 .glow-gold {
-  text-shadow: 0 0 30px rgba(240, 165, 0, 0.5);
+  text-shadow: 0 0 34px rgb(var(--accent-gold) / 0.35);
 }
 
-/* Timeline connector line */
+/* Timeline connector */
 .timeline-line::before {
   content: '';
   position: absolute;
-  left: 11px;
-  top: 24px;
-  bottom: -24px;
-  width: 2px;
-  background: linear-gradient(to bottom, #f0a500, transparent);
+  left: 23px;
+  top: 52px;
+  bottom: -28px;
+  width: 1px;
+  background: linear-gradient(to bottom, rgb(var(--accent-gold) / 0.7), transparent);
 }
 
 /* Animated gradient border */
@@ -114,10 +239,10 @@
 }
 
 .gradient-border {
-  background: linear-gradient(270deg, #f0a500, #4a9eff, #ff6b6b, #f0a500);
+  background: linear-gradient(270deg, rgb(var(--accent-gold)), #4a9eff, #ff6b6b, rgb(var(--accent-gold)));
   background-size: 400% 400%;
   animation: border-dance 8s ease infinite;
-  padding: 1px;
+  padding: 2px;
   border-radius: 9999px;
 }
 
@@ -129,4 +254,38 @@
 
 .cursor-blink {
   animation: blink 1s step-end infinite;
+}
+
+/* Keep project media legible in both themes */
+.media-overlay {
+  background: linear-gradient(to top, rgb(4 4 9 / 0.92) 0%, rgb(4 4 9 / 0.45) 45%, transparent 100%);
+}
+
+/* Accessible skip link */
+.skip-link {
+  position: fixed;
+  top: -60px;
+  left: 16px;
+  z-index: 10000;
+  background: rgb(var(--accent-gold));
+  color: rgb(var(--bg-primary));
+  padding: 10px 18px;
+  border-radius: 0 0 12px 12px;
+  font-weight: 700;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
